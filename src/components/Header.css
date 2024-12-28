@@ -1,0 +1,66 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    background-color: #a4b4fc;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header__logo a {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .header__nav {
+    display: flex;
+    gap: 30px;
+    color: white !important; 
+  }
+  
+  .header__link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #f0f0f0;
+    transition: color 0.3s ease;
+  }
+  
+  .header__link:hover {
+    color: #4DA8DA;
+  }
+  
+  /* Efecto subrayado animado */
+  .header__link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #4DA8DA;
+    transition: width 0.3s;
+  }
+  
+  .header__link:hover::after {
+    width: 100%;
+  }
+  
+  .header__link--active {
+    color: #007BFF;
+    font-weight: bold;
+  }
+  .header .header__nav .header__link {
+    color: white !important;  /* Blanco con máxima prioridad */
+  }
+  .header__link {
+    color: white !important;  /* Forzar el color blanco */
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .header__link:hover {
+    color: #4DA8DA;  /* Azul claro al pasar el mouse */
+  }
+  
