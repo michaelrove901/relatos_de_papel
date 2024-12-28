@@ -8,7 +8,7 @@ import ConfirmationPage from './pages/ConfirmationPage';  // Importamos la pági
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Cart from './components/Cart';
-
+import { ToastContainer } from 'react-toastify';
 function App() {
   return (
     <Router>
@@ -36,6 +36,7 @@ function App() {
         
       </Routes>
       <Footer />
+      <ToastContainer />
     </Router>
   );
 }

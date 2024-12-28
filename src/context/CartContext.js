@@ -7,30 +7,45 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);  // Estado global del carrito
 
+  // Añadir al carrito
   const addToCart = (book) => {
-    setCart((prevCart) => {
-      const itemExists = prevCart.find((item) => item.id === book.id);
-      if (itemExists) {
-        alert('Este libro ya está en el carrito');
-        return prevCart;
+    setCart((prev) => {
+      const exists = prev.find((item) => item.id === book.id);
+      if (exists) {
+        // Incrementa la cantidad si ya existe
+        return prev.map((item) =>
+          item.id === book.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        // Añade el libro con cantidad 1
+        return [...prev, { ...book, quantity: 1 }];
       }
-      alert(`${book.title} agregado al carrito`);
-      return [...prevCart, book];  // Añade el nuevo libro al carrito
     });
   };
 
+  // Eliminar del carrito
   const removeFromCart = (bookId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== bookId));
   };
 
+  // Vaciar el carrito
   const clearCart = () => {
     setCart([]);
   };
 
+  // Calcular el precio total
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => {
+      return total + item.price * item.quantity;  // Multiplica por la cantidad
+    }, 0);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, getTotalPrice }}>
+    {children}
+  </CartContext.Provider>
   );
 }
 

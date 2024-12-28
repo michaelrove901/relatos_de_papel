@@ -19,8 +19,7 @@ function CheckoutPage() {
         <div key={item.id}>
           {item.title} - {item.author}
         </div>
-      ))}
-      <button onClick={handleCheckout}>Pagar</button>
+      ))}      
     </div>
   );
 }

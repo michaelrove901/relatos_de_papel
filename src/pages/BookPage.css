@@ -22,4 +22,22 @@
     max-width: 600px;
     margin: 20px 0;
   }
-  
+  .custom-toast {
+    font-size: 20px;
+    text-align: center;
+    background-color: #4CAF50 !important;
+    color: white !important;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    margin: auto;
+  }
+  .book-page img {
+    width: 300px;  /* Ancho fijo */
+    height: 400px;  /* Altura fija */
+    object-fit: cover;  /* Mantiene la proporción y recorta el exceso */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Sombra para que se vea mejor */
+    margin-bottom: 20px;
+  }
