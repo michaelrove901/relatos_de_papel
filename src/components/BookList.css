@@ -1,23 +1,47 @@
+/* Contenedor general del listado de libros */
+.book-list-container {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Título principal del catálogo */
+.book-list__title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Barra de búsqueda */
+.book-list__search-bar {
+  width: 60%;
+  padding: 12px;
+  margin: 20px auto;
+  display: block;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+/* Cambio de color al enfocar la barra de búsqueda */
+.book-list__search-bar:focus {
+  border-color: #007bff;
+}
+
+/* Listado de libros */
 .book-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-  }
-  .search-bar {
-    width: 60%;
-    padding: 10px;
-    margin: 20px auto;
-    display: block;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .no-results {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #777;
-    margin-top: 20px;
-  }
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Mensaje de no resultados */
+.book-list__no-results {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+  margin-top: 30px;
+}

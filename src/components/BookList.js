@@ -4,16 +4,17 @@ import useBooks from '../hooks/useBooks';
 import './BookList.css';
 
 function BookList() {
-  const { books } = useBooks();  // Obtener libros del hook
-  const [search, setSearch] = useState('');  // Estado para la barra de búsqueda
+  const { books } = useBooks();
+  const [search, setSearch] = useState('');
 
-  // Filtrar libros según el texto de búsqueda
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="book-list-container">
+      {/* Título principal */}
+      <h1 className="book-list__title">Catálogo de Libros</h1>
 
       {/* Barra de búsqueda */}
       <input
@@ -21,15 +22,17 @@ function BookList() {
         placeholder="Buscar libro por título..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="search-bar"
+        className="book-list__search-bar"
       />
 
+      {/* Resultados de la búsqueda */}
       <div className="book-list">
-        {filteredBooks.map((book) => (
-          <BookCard key={book.id} book={book} />
-        ))}
-        {filteredBooks.length === 0 && (
-          <p className="no-results">No se encontraron libros.</p>
+        {filteredBooks.length > 0 ? (
+          filteredBooks.map((book) => (
+            <BookCard key={book.id} book={book} />
+          ))
+        ) : (
+          <p className="book-list__no-results">No se encontraron libros.</p>
         )}
       </div>
     </div>

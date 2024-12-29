@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useCartContext } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
-import Notification from './Notification';  // Importamos la notificación
+import Notification from './Notification';
 import './BookCard.css';
 
 function BookCard({ book }) {
@@ -14,7 +14,7 @@ function BookCard({ book }) {
   };
 
   const handleAddToCart = (e) => {
-    e.stopPropagation();  // Evita redirección
+    e.stopPropagation();
     if (!book.price) {
       console.error('Error: El libro no tiene precio definido.');
       return;
@@ -27,10 +27,7 @@ function BookCard({ book }) {
       quantity: 1
     });
 
-    // Mostrar notificación
     setShowNotification(true);
-
-    // Ocultar notificación después de 3 segundos
     setTimeout(() => {
       setShowNotification(false);
     }, 3000);
@@ -39,17 +36,19 @@ function BookCard({ book }) {
   return (
     <>
       <div className="book-card" onClick={handleCardClick}>
-        <img src={`${process.env.PUBLIC_URL}/images/${book.image}`} alt={book.title} />
-        <h3>{book.title}</h3>
-        <p>{book.author}</p>
+        <img className="book-card__image" 
+             src={`${process.env.PUBLIC_URL}/images/${book.image}`} 
+             alt={book.title} />
+        <h3 className="book-card__title">{book.title}</h3>
+        <p className="book-card__author">{book.author}</p>
         <p className="book-card__price">${book.price}</p>
-        <button onClick={handleAddToCart}>
+        <button className="book-card__button" onClick={handleAddToCart}>
           Agregar al Carrito
         </button>
       </div>
 
       {showNotification && (
-        <Notification message={`Libro ${book.title} agregado al carrito`} />
+        <Notification message={`📚 ${book.title} agregado al carrito`} />
       )}
     </>
   );
