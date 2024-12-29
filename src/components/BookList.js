@@ -1,20 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BookCard from './BookCard';
+import useBooks from '../hooks/useBooks';
 import './BookList.css';
 
-const books = [
-  { id: 1, title: 'Cien años de soledad', author: 'Gabriel García Márquez', image: 'soledad.png', price: 1200 },
-  { id: 2, title: '1984', author: 'George Orwell', image: '1984.jpg', price: 900 },
-  { id: 3, title: 'El señor de los anillos', author: 'J. R. R. Tolkien', image: 'anillos.jpg', price: 900 },
-  { id: 4, title: 'Harry Potter', author: 'George Orwell', image: 'harry.jpg', price: 900 }
-];
-
 function BookList() {
+  const { books } = useBooks();  // Obtener libros del hook
+  const [search, setSearch] = useState('');  // Estado para la barra de búsqueda
+
+  // Filtrar libros según el texto de búsqueda
+  const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="book-list">
-      {books.map((book) => (
-        <BookCard key={book.id} book={book} />
-      ))}
+    <div className="book-list-container">
+
+      {/* Barra de búsqueda */}
+      <input
+        type="text"
+        placeholder="Buscar libro por título..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="search-bar"
+      />
+
+      <div className="book-list">
+        {filteredBooks.map((book) => (
+          <BookCard key={book.id} book={book} />
+        ))}
+        {filteredBooks.length === 0 && (
+          <p className="no-results">No se encontraron libros.</p>
+        )}
+      </div>
     </div>
   );
 }

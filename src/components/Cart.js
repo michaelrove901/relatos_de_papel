@@ -22,7 +22,7 @@ function Cart() {
                 <p>El carrito está vacío</p>
             ) : (
                 cart.map((item) => (
-                    <div key={item.id} className="cart__item">BookCard
+                    <div key={item.id} className="cart__item">Libro
                         <span>{item.title} - ${item.price * item.quantity} ({item.quantity}x)</span>
                         <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
                     </div>
