@@ -1,38 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BookCard from './BookCard';
 import useBooks from '../hooks/useBooks';
+import useFilterBooks from '../hooks/useFilterBooks';  // Importamos el nuevo hook
 import './BookList.css';
 
 function BookList() {
-  const { books } = useBooks();
-  const [search, setSearch] = useState('');
-
-  const filteredBooks = books.filter((book) =>
-    book.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const { books } = useBooks();  // Obtener libros del hook existente
+  const { filteredBooks, searchTerm, setSearchTerm } = useFilterBooks(books);  // Filtrado de libros
 
   return (
     <div className="book-list-container">
-      {/* Título principal */}
-      <h1 className="book-list__title">Catálogo de Libros</h1>
+      <h1>Catálogo de Libros</h1>
 
       {/* Barra de búsqueda */}
       <input
         type="text"
-        placeholder="Buscar libro por título..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="book-list__search-bar"
+        placeholder="Buscar libro por título o autor..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-bar"
       />
 
-      {/* Resultados de la búsqueda */}
       <div className="book-list">
-        {filteredBooks.length > 0 ? (
-          filteredBooks.map((book) => (
-            <BookCard key={book.id} book={book} />
-          ))
-        ) : (
-          <p className="book-list__no-results">No se encontraron libros.</p>
+        {filteredBooks.map((book) => (
+          <BookCard key={book.id} book={book} />
+        ))}
+        {filteredBooks.length === 0 && (
+          <p className="no-results">No se encontraron libros.</p>
         )}
       </div>
     </div>
